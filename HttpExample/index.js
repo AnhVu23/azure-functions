@@ -24,7 +24,6 @@ module.exports = async function (context, req) {
   if (req.method === 'GET') {
     const collection = db.collection('students')
     const list = await collection.find({}).toArray()
-    console.log(list)
     context.res = {
       // status: 200, /* Defaults to 200 */
       body: JSON.stringify(list),
@@ -38,3 +37,8 @@ module.exports = async function (context, req) {
     }
   }
 }
+
+module.exports = async function (context, documents) {
+    context.log('First document Id modified : ', documents[0].id)
+    context.done()
+  }
